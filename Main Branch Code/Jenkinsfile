@@ -40,6 +40,7 @@ stages {
                 docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
                 echo "\$DOCKER_PASS" | docker login -u "\$DOCKER_USER" --password-stdin
                 docker push ${IMAGE_NAME}:${IMAGE_TAG}
+                docker logout
                 """
             }
         }
@@ -67,7 +68,7 @@ stages {
                 git checkout main
                 git reset --hard origin/main
 
-                sed -i "s|image:.*|image: ${IMAGE_NAME}:${IMAGE_TAG}|" k8s/deployment.yml
+                sed -i "s|image: .*|image: ${IMAGE_NAME}:${IMAGE_TAG}|" k8s/deployment.yml
 
                 git add k8s/deployment.yml
 

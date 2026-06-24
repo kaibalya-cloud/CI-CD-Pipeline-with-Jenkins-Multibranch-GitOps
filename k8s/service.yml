@@ -2,14 +2,14 @@ apiVersion: v1
 kind: Service
 
 metadata:
-name: movie-app-service
+  name: movie-app-service
 
 spec:
-type: LoadBalancer
+  type: LoadBalancer
 
-selector:
-app: movie-app
+  selector:
+    app: movie-app
 
-ports:
-- port: 80
-targetPort: 5000
+  ports:
+    - port: 80
+      targetPort: 5000
